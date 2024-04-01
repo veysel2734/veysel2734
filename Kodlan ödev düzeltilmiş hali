@@ -1,25 +1,35 @@
 import random
 import time
 
-
 eng_words = ['Hi','Bye','Task', 'Programm']
 tr_words = ['Merhaba','Hoşça kalın','Görev', 'Program']
 score = 0
 
-mode = input("Bir mod seçin: Yeni kelimeler eklemek için 0, çeviri yapmak için 1: \n")
-while ((mode != '0') and (mode != '1')):
-    mode = input("Geçersiz sembol! Sadece 0 1veya 1 yazın (Yeni kelimeler eklemek için 0, çeviri yapmak için 1) \n")
+mode = input("Bir mod seçin: Yeni kelimeler eklemek için 0, çeviri yapmak için 1 kelime silmek için 2: \n")
+while ((mode != '0') and (mode != '1') and (mode != '2')):
+    mode = input("Geçersiz sembol! Sadece 0,1 veya 2 yazın yeni kelimeler eklemek için 0, çeviri yapmak için 1 kelime silmek için 2:) \n")
 
 if mode == "1":
     print("Çevirebildiğiniz kadar kelime çevirin! 10 hakkınız var!")
-    for i in range(2):
+    for i in range(10):
         number = random.randint(0, len(eng_words)-1)
         print("Tercümesi bu şekilde olmalı: " + eng_words[number])
         if input() == tr_words[number]:
             print("Harika!!!")
-            score += 11
+            score += 1
         else:
             print("Bir yanlışlık var... Doğru kelime - " + eng_words[number])
+
+elif mode == "2":
+        print(eng_words)
+        remove=input("İngilizce olarak silmek istediğiniz kelimeyi yazınız:")
+        eng_words.remove(remove)
+        print(tr_words)
+        remove1=input("Türkçe olarak silmek istediğiniz kelimeyi yazınız:")
+        tr_words.remove(remove1)
+        print(eng_words)
+        print(tr_words)
+        
 else:
     word = input("İngilizce bir kelime yazın: ")
     translate = input("Kelimenin tercümesini yazın: ")
@@ -27,5 +37,5 @@ else:
         eng_words.append(word)
         tr_words.append(translate)
         print("Kelime başarıyla eklendi!")
-
-print("Oyun bitti! Toplam puanınız:", score)
+    
+print("Toplam puanınız:",score)    
